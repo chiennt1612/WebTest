@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+    <html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        </head>
+<body>
+    <div>
+        <table align="center" width="800">
+            <thead>
+                <tr>
+                    <td><img src="Image/Logo.png" /></td>
+                    <td align="right">
+                        <form id="frmLogin" name="frmLogin" asp-action="Login" asp-controller="Home">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="form-control" type="text" placeholder="Email" name="Email" id="Email" />
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="password" placeholder="Password" name="Password" id="Password" />
+                                    </td>
+                                    <td><input type="submit" value="Login/Register" name="submit" id="submit" /></td>
+                                </tr>
+                            </table>                            
+                        </form>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td colspan="2">
+                        <hr />
+                        @RenderBody()
+                        <hr />
+                    </td>
+                    </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        Welcome my page. The funny video....
+                    </td>
+                    </tr>
+            </tfoot>
+        </table>
+    </div>
+    </body>
+        </html>

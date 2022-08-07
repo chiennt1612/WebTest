@@ -1,0 +1,17 @@
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\bin\Debug\net6.0\EntityFramework.API.deps.json
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\bin\Debug\net6.0\EntityFramework.API.runtimeconfig.json
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\bin\Debug\net6.0\EntityFramework.API.dll
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\bin\Debug\net6.0\EntityFramework.API.pdb
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\bin\Debug\net6.0\Language.dll
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\bin\Debug\net6.0\Language.pdb
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.csproj.CopyComplete
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.dll
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\refint\EntityFramework.API.dll
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.pdb
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\EntityFramework.API.genruntimeconfig.cache
+C:\Users\Administrator\source\repos\WebTest\EntityFramework.API\obj\Debug\net6.0\ref\EntityFramework.API.dll

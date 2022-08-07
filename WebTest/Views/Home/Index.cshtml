@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model EntityFramework.API.Entities.EntityBase.BaseEntityList<EntityFramework.API.Entities.Movies>
+@if(Model.list != null)
+{
+    <table>
+        @foreach(var item in Model.list)
+        {
+        <tr>
+            <td valign="top">
+                <iframe width="200" height="100" src="@item.Link" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </td>
+            <td valign="top">
+                <table>
+                    <tr>
+                        <td>@item.Title</td>
+                    </tr>
+                    <tr>
+                        <td>Share by: @item.UserCreator/ @item.EmailCreator</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                    </tr>
+                    <tr>
+                        <td>@item.Description</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        }  
+        <tr>
+            <td align="center" colspan="2">
+                @if(Model.Page > 1 && Model.TotalRecords > 1)
+                {
+                    <a action="Index" asp-route-page="@Model.Page - 1">Back</a>
+                }
+                @if(Model.Page * Model.PageSize < Model.TotalRecords)
+                {
+                   <a action="Index" asp-route-page="@Model.Page + 1">Next</a>
+                }
+            </td>
+        </tr>
+    </table>
+}
