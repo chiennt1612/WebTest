@@ -1,0 +1,13 @@
+/BackEnd/Log
+/BackEnd/obj
+/BackEnd/bin
+/WebTest/obj
+/WebTest/bin
+/WebTest/Log
+/UnitTests/obj
+/UnitTests/bin
+/Language/obj
+/Language/bin
+/EntityFramework.API/obj
+/EntityFramework.API/bin
+/.vs

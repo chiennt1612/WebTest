@@ -4,25 +4,40 @@
         <meta charset="UTF-8">
         </head>
 <body>
+
     <div>
         <table align="center" width="800">
             <thead>
                 <tr>
-                    <td><img src="Image/Logo.png" /></td>
+                    <td><img src="/Image/Logo.png" /></td>
                     <td align="right">
-                        <form id="frmLogin" name="frmLogin" asp-action="Login" asp-controller="Home">
+                        @if(ViewData["Logined"] != null)
+                        {
                             <table>
                                 <tr>
                                     <td>
-                                        <input class="form-control" type="text" placeholder="Email" name="Email" id="Email" />
+                                        Welcome to my page @ViewData["Logined"]
+                                    </td>
+                                </tr>
+                            </table>   
+                        }
+                        else
+                        {
+                            <form id="frmLogin" name="frmLogin" asp-action="Login" asp-controller="Home">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="form-control" type="text" placeholder="Email" name="username" id="username" />
                                     </td>
                                     <td>
-                                        <input class="form-control" type="password" placeholder="Password" name="Password" id="Password" />
+                                        <input class="form-control" type="password" placeholder="Password" name="password" id="password" />
                                     </td>
                                     <td><input type="submit" value="Login/Register" name="submit" id="submit" /></td>
                                 </tr>
                             </table>                            
                         </form>
+                        }
+                        
                     </td>
                 </tr>
                 </thead>

@@ -81,7 +81,7 @@ namespace BackEnd.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            _logger.LogInformation($"ModelState: {ModelState.IsValid}");
+            _logger.LogInformation($"ModelState: {Newtonsoft.Json.JsonConvert.SerializeObject(model)}");
             if (ModelState.IsValid)
             {
                 var userExists = await _userManager.FindByNameAsync(model.Username);
@@ -148,7 +148,9 @@ namespace BackEnd.Controllers
                 MoreInfo = $"Login success!",
                 data = new {
                     token = token,
-                    refreshToken = refreshToken
+                    refreshToken = refreshToken,
+                    userId = user.Id,
+                    userName = user.UserName
                 }
             });
         }
