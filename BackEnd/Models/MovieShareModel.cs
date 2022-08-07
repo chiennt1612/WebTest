@@ -22,7 +22,7 @@ namespace BackEnd.Models
 
         public List<long>? UserIds { get; set; }
     }
-    
+
     public enum GetListBy
     {
         MyVideo = 0,

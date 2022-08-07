@@ -33,7 +33,7 @@ namespace BackEnd
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseSwagger("Nuoc Ngoc Tuan Mobile v1.0");
+            app.UseSwagger("Webtest v1.0");
 
             app.UseHttpsRedirection();
 

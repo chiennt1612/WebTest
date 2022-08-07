@@ -4,7 +4,6 @@ using BackEnd.Services.Interfaces;
 using EntityFramework.API.Entities;
 using EntityFramework.API.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
@@ -38,7 +37,7 @@ namespace BackEnd.Controllers
         public async Task<IActionResult> List(GetListBy getListBy, int? page, int? pageSize)
         {
             bool IsMyVideo = ((int)getListBy == 0);
-            int _Page = (page.HasValue ? page.Value : 1); if(_Page < 1) _Page = 1;
+            int _Page = (page.HasValue ? page.Value : 1); if (_Page < 1) _Page = 1;
             int _PageSize = pageSize.HasValue ? pageSize.Value : 10; if (_PageSize < 10) _PageSize = 10;
             Func<Movies, object> sqlOrder = s => s.Id;
             var user = await GetCurrentUserAsync(HttpContext.User);
@@ -56,7 +55,7 @@ namespace BackEnd.Controllers
             );
             var r = await _iMoviesServices.GetListAsync(sqlWhere, sqlOrder, true, _Page, _PageSize);
             _logger.LogInformation($"GetListAsync {getListBy}/{page}/{pageSize}");
-            if(r == null)
+            if (r == null)
                 return Ok(new ResponseOK()
                 {
                     Code = 404,
@@ -86,7 +85,7 @@ namespace BackEnd.Controllers
             int _Page = (page.HasValue ? page.Value : 1); if (_Page < 1) _Page = 1;
             int _PageSize = pageSize.HasValue ? pageSize.Value : 10; if (_PageSize < 10) _PageSize = 10;
             Func<Movies, object> sqlOrder = s => s.Id;
-            
+
             Expression<Func<Movies, bool>> sqlWhere = u => (
                 (!u.IsDeleted) &&
                 (u.IsPublish)
@@ -123,7 +122,7 @@ namespace BackEnd.Controllers
             var movie = await _iMoviesServices.GetByIdAsync(Id, user.Id);
 
             _logger.LogInformation($"Details {Id}", $"Details {Id}");
-            if(movie == null)
+            if (movie == null)
                 return Ok(
                     new ResponseOK()
                     {
@@ -180,7 +179,7 @@ namespace BackEnd.Controllers
                         UserMessage = Language.EntityValidation.Success,
                         data = movie
                     });
-            }    
+            }
         }
 
         [HttpGet]

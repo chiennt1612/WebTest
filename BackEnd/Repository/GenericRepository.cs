@@ -53,7 +53,7 @@ namespace BackEnd.Repository
         public async Task DeleteAsync(TKey id)
         {
             var a = await _dbSet.FindAsync(id);
-            if (a!=  null) Delete(a);
+            if (a != null) Delete(a);
         }
         public virtual void Delete(T entity)
         {

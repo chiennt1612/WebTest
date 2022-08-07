@@ -1,17 +1,11 @@
-﻿using BackEnd.Repository.Interfaces;
+﻿using BackEnd.Repository;
+using BackEnd.Repository.Interfaces;
 using BackEnd.Services;
 using BackEnd.Services.Interfaces;
 using EntityFramework.API.DBContext;
-using NUnit.Framework;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BackEnd.Repository;
-using System.Linq.Expressions;
 using EntityFramework.API.Entities;
+using NUnit.Framework;
+using System.Linq.Expressions;
 
 namespace UnitTests
 {
@@ -68,7 +62,7 @@ namespace UnitTests
                 IsPublish = false,
                 Link = "https://www.youtube.com/watch?v=fcN0BXzK8bg",
                 Title = "Testing",
-                UserIds = new List<long>() { 1,2,3}
+                UserIds = new List<long>() { 1, 2, 3 }
             }, 1, "chien@yahoo.com");
 
             Assert.IsTrue(result, "1 should not be prime");

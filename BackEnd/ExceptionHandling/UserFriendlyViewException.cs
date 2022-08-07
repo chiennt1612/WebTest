@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BackEnd.ExceptionHandling
+﻿namespace BackEnd.ExceptionHandling
 {
     public class UserFriendlyViewException : Exception
     {

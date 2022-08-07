@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BackEnd.ExceptionHandling
+﻿namespace BackEnd.ExceptionHandling
 {
     public class UserFriendlyErrorPageException : Exception
     {

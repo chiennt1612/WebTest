@@ -1,12 +1,8 @@
 ﻿using BackEnd.Models;
-using EntityFramework.API.Entities;
-using EntityFramework.API.Entities.EntityBase;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using System.Net;
-using WebTest.Helper;
 using WebTest.Models;
 
 namespace WebTest.Controllers
@@ -26,7 +22,9 @@ namespace WebTest.Controllers
 
         public async Task<IActionResult> Index(int? page)
         {
-            int _page = page.HasValue? page.Value : 1;if (_page < 1) _page = 1;
+            string UserName = HttpContext.Session.GetString("UserName");
+            if (!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
+            int _page = page.HasValue ? page.Value : 1; if (_page < 1) _page = 1;
             MoviesList a = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/Index?page=" + _page.ToString() + "&pageSize=10", "", "", "GET");
             if (a.Status == 1)
                 return View(a.data);
@@ -36,6 +34,8 @@ namespace WebTest.Controllers
 
         public async Task<IActionResult> MyVideo(int? page)
         {
+            string UserName = HttpContext.Session.GetString("UserName");
+            if (!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
             int _page = page.HasValue ? page.Value : 1; if (_page < 1) _page = 1;
             string Token = HttpContext.Session.GetString("Token");
             MoviesList a = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/List/0?page=" + _page.ToString() + "&pageSize=10", Token, "", "GET");
@@ -47,6 +47,8 @@ namespace WebTest.Controllers
 
         public async Task<IActionResult> ShareVideo(int? page)
         {
+            string UserName = HttpContext.Session.GetString("UserName");
+            if (!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
             string Token = HttpContext.Session.GetString("Token");
             int _page = page.HasValue ? page.Value : 1; if (_page < 1) _page = 1;
             MoviesList a = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/List/1?page=" + _page.ToString() + "&pageSize=10", Token, "", "GET");
@@ -101,7 +103,7 @@ namespace WebTest.Controllers
                     streamWriter.Close();
                 }
             }
-            
+
             try
             {
                 var httpResponse = (HttpWebResponse)await httpWebRequest.GetResponseAsync();

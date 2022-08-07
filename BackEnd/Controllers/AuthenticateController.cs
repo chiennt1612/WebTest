@@ -1,9 +1,7 @@
 ﻿using BackEnd.ExceptionHandling;
-using BackEnd.Helper;
 using BackEnd.Models;
 using BackEnd.Services.Interfaces;
 using EntityFramework.API.Entities.Identity;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -138,7 +136,7 @@ namespace BackEnd.Controllers
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(refreshTokenValidityInDays);
             _logger.LogInformation($"RefreshToken: {refreshToken}\nToken: {token}\n");
             await _userManager.UpdateAsync(user);
-            
+
             return Ok(new ResponseOK()
             {
                 Status = 1,
@@ -146,7 +144,8 @@ namespace BackEnd.Controllers
                 InternalMessage = $"{user.UserName}: Login success!",
                 Code = 200,
                 MoreInfo = $"Login success!",
-                data = new {
+                data = new
+                {
                     token = token,
                     refreshToken = refreshToken,
                     userId = user.Id,
