@@ -12,6 +12,11 @@ namespace BackEnd.Models
         public string? MoreInfo { get; set; }
     }
 
+    public class MovieShareResponseOK : ResponseOK
+    {
+        public bool data { get; set; }
+    }
+
     public class MoviesList : ResponseOK
     {
         public BaseEntityList<Movies>? data { get; set; }

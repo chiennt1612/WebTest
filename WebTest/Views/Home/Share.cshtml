@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form action="Share" method="post">
+    <table><tr><td colspan="2"><a href="/Home">List of publish video </a>
+                @if(ViewData["Logined"] != null)
+                {
+                    <a href="/Home/MyVideo">My video</a> 
+                    <span> | </span>
+                    <a href="/Home/ShareVideo">Share to me</a>
+                    <span> | </span>
+                    <a href="/Home/Share">Share</a>
+                }
+            </td></tr>
+                    <tr>
+                        <td>Title</td><td><input type="text" id="Title" name="Title" /></td>
+                    </tr>
+                    <tr>
+                        <td>Link</td><td><input type="text" id="Link" name="Link" /></td>
+                    </tr>
+                    <tr>
+                        <td>Description</td><td><input type="text" id="Description" name="Description" /></td>
+                    </tr>
+                    <tr>
+                        <td>UserId</td><td><input type="text" id="UserId" name="UserId" /></td>
+                    </tr>
+                    <tr>
+                        <td></td><td><input type="submit" value="submit" id="submit" name="submit" /></td>
+                    </tr>
+                </table>
+</form>

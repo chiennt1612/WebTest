@@ -7,12 +7,14 @@
 @if(Model.list != null)
 {
     <table>
-        <tr><td colspan="2">List of publish video 
+        <tr><td colspan="2"><a href="/Home">List of publish video </a>
                 @if(ViewData["Logined"] != null)
                 {
-                    <a action="MyVideo">My video</a> 
+                    <a href="/Home/MyVideo">My video</a> 
                     <span> | </span>
-                    <a action="ShareVideo">Share video</a>
+                    <a href="/Home/ShareVideo">Share to me</a>
+                    <span> | </span>
+                    <a href="/Home/Share">Share</a>
                 }
             </td></tr>
         @foreach(var item in Model.list)

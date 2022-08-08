@@ -2,7 +2,7 @@
 
 namespace BackEnd.Repository.Interfaces
 {
-    public interface IMoviesRepository : IGenericRepository<Movies, long>
+    public interface IMoviesRepository : IGenericRepository<Movies, long>    
     {
     }
 }

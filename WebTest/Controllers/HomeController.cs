@@ -1,8 +1,12 @@
 ﻿using BackEnd.Models;
+using EntityFramework.API.Entities;
+using EntityFramework.API.Entities.EntityBase;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 using System.Net;
+using WebTest.Helper;
 using WebTest.Models;
 
 namespace WebTest.Controllers
@@ -23,8 +27,8 @@ namespace WebTest.Controllers
         public async Task<IActionResult> Index(int? page)
         {
             string UserName = HttpContext.Session.GetString("UserName");
-            if (!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
-            int _page = page.HasValue ? page.Value : 1; if (_page < 1) _page = 1;
+            if(!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
+            int _page = page.HasValue? page.Value : 1;if (_page < 1) _page = 1;
             MoviesList a = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/Index?page=" + _page.ToString() + "&pageSize=10", "", "", "GET");
             if (a.Status == 1)
                 return View(a.data);
@@ -56,6 +60,34 @@ namespace WebTest.Controllers
                 return View("Index", a.data);
             else
                 return View("Index", null);
+        }
+
+        [HttpGet]
+        public IActionResult Share()
+        {
+            string UserName = HttpContext.Session.GetString("UserName");
+            if (!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Share(MovieShareInput model)
+        {
+            string UserName = HttpContext.Session.GetString("UserName");
+            if (!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
+            string Token = HttpContext.Session.GetString("Token");
+            var userIds = new List<long>();
+            userIds.Add(model.UserId);
+            MovieShareModel a = new MovieShareModel ()
+            {
+                Title = model.Title,
+                Link = model.Link,
+                Description = model.Description,
+                IsPublish = false,
+                UserIds = userIds
+            };
+            MovieShareResponseOK a1 = await APIRequest<MovieShareResponseOK, MovieShareModel>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/Share", Token, a, "POST");
+            return View();
         }
 
         [HttpPost]
@@ -103,7 +135,7 @@ namespace WebTest.Controllers
                     streamWriter.Close();
                 }
             }
-
+            
             try
             {
                 var httpResponse = (HttpWebResponse)await httpWebRequest.GetResponseAsync();

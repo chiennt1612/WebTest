@@ -40,7 +40,7 @@ namespace BackEnd.Services
                         UnLike = 0,
                         DateCreator = dateCreate,
                         UserCreator = UserId,
-                        EmailCreator = Email
+                        EmailCreator= Email
                     };
                     var a = await unitOfWork.moviesRepository.AddAsync(movies);
                     await unitOfWork.SaveAsync();
@@ -57,14 +57,14 @@ namespace BackEnd.Services
                                     IsDeleted = false,
                                     MovieId = a.Id,
                                     UserId = b,
-                                    UserCreator = UserId
+                                    UserCreator = UserId                                    
                                 });
                             }
                             await unitOfWork.movieShareRepository.AddManyAsync(movieShares);
                             await unitOfWork.SaveAsync();
                         }
                     }
-                    if (a != null)
+                    if(a != null)
                     {
                         return true;
                     }
@@ -78,10 +78,10 @@ namespace BackEnd.Services
             try
             {
                 var a = await unitOfWork.moviesRepository.GetByIdAsync(Id);
-                if (a != null) // Permisstion check
+                if(a != null) // Permisstion check
                 {
                     if (a.IsDeleted) return default;
-                    if (a.IsPublish) return a;
+                    if(a.IsPublish) return a;
                     // Check if Is owner && not is delete
                     if (a.UserCreator == UserId) return a;
                     // Check if shared && not is delete
@@ -103,7 +103,7 @@ namespace BackEnd.Services
             try
             {
                 var a = await unitOfWork.moviesRepository.GetListAsync(expression, sort, desc, page, pageSize);
-                if (ilogger != null) ilogger.LogInformation($"GetListAsync expression, sort {desc} {page} {pageSize}");
+                if(ilogger != null) ilogger.LogInformation($"GetListAsync expression, sort {desc} {page} {pageSize}");
                 return a;
             }
             catch (Exception ex)

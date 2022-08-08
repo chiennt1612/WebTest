@@ -1,4 +1,10 @@
-﻿namespace EntityFramework.API.Entities.EntityBase
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EntityFramework.API.Entities.EntityBase
 {
     public class BaseEntityList<T>
     {

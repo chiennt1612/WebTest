@@ -1,4 +1,5 @@
-﻿namespace BackEnd.Models
+﻿using Microsoft.AspNetCore.Http;
+namespace BackEnd.Models
 {
     public class ResponseBase
     {
