@@ -2,19 +2,62 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    string page = "0";
+    if (ViewData["Page"] != null) if (ViewData["Page"].ToString() != "") page = ViewData["Page"].ToString();
 }
 @model EntityFramework.API.Entities.EntityBase.BaseEntityList<EntityFramework.API.Entities.Movies>
-@if(Model.list != null)
+@if(ViewData["Login"] != null)
+{
+    if(ViewData["Login"].ToString() != "")
+    {
+        <span style="color:red; font-weight:bold">@ViewData["Login"]</span>
+    }
+}
+@if(Model != null)
+{
+   if(Model.list != null)
 {
     <table>
-        <tr><td colspan="2"><a href="/Home">List of publish video </a>
+        <tr><td colspan="2">
+                    @if(page == "0")
+                    {
+                        <a href="/Home"><b>List of publish video </b></a>
+                    }
+                    else
+                    {
+                        <a href="/Home">List of publish video </a>
+                    }
+                    
                 @if(ViewData["Logined"] != null)
                 {
-                    <a href="/Home/MyVideo">My video</a> 
                     <span> | </span>
-                    <a href="/Home/ShareVideo">Share to me</a>
+                    @if(page == "1")
+                    {
+                        <a href="/Home/MyVideo"><b>My video</b></a> 
+                    }
+                    else
+                    {
+                        <a href="/Home/MyVideo">My video</a> 
+                    }                    
                     <span> | </span>
-                    <a href="/Home/Share">Share</a>
+                    @if(page == "2")
+                    {
+                        <a href="/Home/ShareVideo"><b>Share to me</b></a>
+                    }
+                    else
+                    {
+                        <a href="/Home/ShareVideo">Share to me</a>
+                    }                    
+                    <span> | </span>
+                    @if(page == "3")
+                    {
+                        <a href="/Home/Share"><b>Share</b></a>
+                    }
+                    else
+                    {
+                        <a href="/Home/Share">Share</a>
+                    }
+                    
                 }
             </td></tr>
         @foreach(var item in Model.list)
@@ -54,4 +97,6 @@
             </td>
         </tr>
     </table>
+} 
 }
+

@@ -151,6 +151,15 @@ namespace Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username/Password is wrong.
+        /// </summary>
+        public static string LoginFail {
+            get {
+                return ResourceManager.GetString("LoginFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Meta Box.
         /// </summary>
         public static string MetaBox {

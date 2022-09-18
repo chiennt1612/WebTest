@@ -113,6 +113,12 @@ namespace BackEnd.Controllers
                         return StatusCode(StatusCodes.Status200OK,
                                     new ResponseBase(Language.EntityValidation.Fail, $"{model.Username}: {Language.EntityValidation.AccountLockout}!", $"{model.Username}: {Language.EntityValidation.AccountLockout}!", 0, 400));
                     }
+                    else
+                    {
+                        _logger.LogWarning("User account login fail.");
+                        return StatusCode(StatusCodes.Status200OK,
+                                    new ResponseBase(Language.EntityValidation.Fail, $"{model.Username}: {Language.EntityValidation.LoginFail}!", $"{model.Username}: {Language.EntityValidation.LoginFail}!", 0, 400));
+                    }
                 }
             }
             _logger.LogError($"{model.Username}: {Language.EntityValidation.UserCreateFail}");

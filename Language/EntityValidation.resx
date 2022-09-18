@@ -147,6 +147,9 @@
   <data name="Link" xml:space="preserve">
     <value>Link</value>
   </data>
+  <data name="LoginFail" xml:space="preserve">
+    <value>Username/Password is wrong</value>
+  </data>
   <data name="MetaBox" xml:space="preserve">
     <value>Meta Box</value>
   </data>

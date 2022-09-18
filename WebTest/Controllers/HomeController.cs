@@ -30,6 +30,7 @@ namespace WebTest.Controllers
             if(!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
             int _page = page.HasValue? page.Value : 1;if (_page < 1) _page = 1;
             MoviesList a = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/Index?page=" + _page.ToString() + "&pageSize=10", "", "", "GET");
+            ViewData["Page"] = "0";
             if (a.Status == 1)
                 return View(a.data);
             else
@@ -43,6 +44,7 @@ namespace WebTest.Controllers
             int _page = page.HasValue ? page.Value : 1; if (_page < 1) _page = 1;
             string Token = HttpContext.Session.GetString("Token");
             MoviesList a = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/List/0?page=" + _page.ToString() + "&pageSize=10", Token, "", "GET");
+            ViewData["Page"] = "1";
             if (a.Status == 1)
                 return View("Index", a.data);
             else
@@ -56,6 +58,7 @@ namespace WebTest.Controllers
             string Token = HttpContext.Session.GetString("Token");
             int _page = page.HasValue ? page.Value : 1; if (_page < 1) _page = 1;
             MoviesList a = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/List/1?page=" + _page.ToString() + "&pageSize=10", Token, "", "GET");
+            ViewData["Page"] = "2";
             if (a.Status == 1)
                 return View("Index", a.data);
             else
@@ -77,7 +80,7 @@ namespace WebTest.Controllers
             if (!string.IsNullOrEmpty(UserName)) ViewData["Logined"] = HttpContext.Session.GetString("UserName");
             string Token = HttpContext.Session.GetString("Token");
             var userIds = new List<long>();
-            userIds.Add(model.UserId);
+            if(model.UserId > 0) userIds.Add(model.UserId);
             MovieShareModel a = new MovieShareModel ()
             {
                 Title = model.Title,
@@ -93,6 +96,7 @@ namespace WebTest.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel loginModel)
         {
+            ViewData["Login"] = "";
             LoginOutputModel a = await APIRequest<LoginOutputModel, LoginModel>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Authenticate/Register", "", loginModel, "POST");
             if (a.Status == 1)
             {
@@ -101,12 +105,18 @@ namespace WebTest.Controllers
                 HttpContext.Session.SetString("UserId", a.data.UserId.Value.ToString());
                 HttpContext.Session.SetString("UserName", a.data.UserName);
                 ViewData["Logined"] = a.data.UserName;
-            }
-            MoviesList a1 = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/Index?page=1&pageSize=10", "", "", "GET");
-            if (a.Status == 1)
+                ViewData["Page"] = "1";
+                MoviesList a1 = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/List/0?page=1&pageSize=10", a.data.Token, "", "GET"); 
                 return View("Index", a1.data);
+            }                
             else
-                return View("Index", null);
+            {
+                ViewData["Page"] = "0";
+                ViewData["Login"] = $"Login false {a.InternalMessage}";
+                MoviesList a1 = await APIRequest<MoviesList, string>(_logger, _configuration["APIConfig:URL"] + "api/v1.0/Movies/Index?page=1&pageSize=10", "", "", "GET");
+                return View("Index", a1.data);
+            }
+                
         }
 
         private async Task<T> APIRequest<T, T1>(ILogger _logger, string APIUrl, string APIToken, T1 pzData, string Method = "POST")
